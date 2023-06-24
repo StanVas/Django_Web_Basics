@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}
+    Forms
+{% endblock %}
+{% block content %}
+    <h2>
+        {% if name %}
+            Hello, {{ name }}! Nice to see you!
+        {% else %}
+            Please, enter your name!
+        {% endif %}
+    </h2>
+    {{ csrf_token }}
+    {#<form method="GET" action="{% url 'index' %}"> by default#}
+    <h3>Default form</h3>
+    <form method="POST" action="{% url 'index' %}">
+        {{ form.as_div }}
+        <button>Submit</button>
+        {# <input type="submit" value="Submit"> same as button but more old school#}
+        {% csrf_token %} {#{% csrf_token %} hidden by default when `tag`#}
+    </form>
+    <h3>Customized form</h3>
+    {# This way is much more dinamic than with `attrs=`(in the view)#}
+    <form method="POST" action="{% url 'index' %}">
+        {% for field in form %}
+            <label class="custom-form" for="{{ field.id_for_label }}">
+                <strong>{{ field.label }}</strong>
+                {{ field }}
+            </label>
+        {% endfor %}
+        <button>Submit</button>
+        {# <input type="submit" value="Submit"> same as button but more old school#}
+        {% csrf_token %}
+    </form>
+{% endblock %}

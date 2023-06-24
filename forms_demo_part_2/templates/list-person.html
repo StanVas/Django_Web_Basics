@@ -1,0 +1,8 @@
+<ul>
+    {% for person in persons %}
+        <img width="80" src="/media/{{ person.profile_image }}">
+        <stron>
+            <li>{{ person.name }}</li>
+        </stron>
+    {% endfor %}
+</ul>

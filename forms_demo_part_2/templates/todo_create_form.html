@@ -1,0 +1,8 @@
+<a href="{% url 'index' %}">TodoForm</a>
+<a href="{% url 'todo create form' %}">TodoCreateForm</a>
+<h1>TODO Create Form</h1>
+<form method="POST"  action="{% url 'index' %}">
+    {{ form }}
+    <button>Submit</button>
+    {% csrf_token %}
+</form>
