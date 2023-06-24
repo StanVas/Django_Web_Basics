@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <main>
+        <section id="details">
+            <div id="details-wrapper">
+                <img id="details-img" src="{{ fruit.image_url }}" alt="{{ fruit.name }}"/>
+                <p id="details-title">{{ fruit.name }}</p>
+                <div id="info-wrapper">
+                    <div id="details-description">
+                        <p>{{ fruit.description }}</p>
+                        <p id="nutrition">Nutrition</p>
+                        <p id="details-nutrition">{{ fruit.nutrition }}</p>
+                    </div>
+
+                    <div id="action-buttons">
+                        <a href="{% url 'fruit edit' pk=fruit.pk %}" id="edit-btn">Edit</a>
+                        <a href="{% url 'fruit delete' pk=fruit.pk %}" id="delete-btn">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
