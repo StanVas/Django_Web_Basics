@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+        <!-- Profile Page -->
+        <section id="profile-page" class="details">
+            <div class="profile-information">
+                <h3>{{ profile.first_name }} {{ profile.last_name }}</h3>
+                <p class="img"><img src="{{ profile.image }}" alt="Profile image"></p>
+                <div class="actions">
+                    <a class="button" href="{% url 'profile edit' %}">Edit</a>
+                    <a class="button" href="{% url 'profile delete' %}">Delete</a>
+                </div>
+            </div>
+        </section>
+{% endblock %}
