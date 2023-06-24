@@ -1,0 +1,33 @@
+{% load static %}
+{% load my_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo</title>
+    {#  wrong way  #}
+    {#<link rel="stylesheet" href="/static/some_css.css">#}
+    <link rel="stylesheet" href="{% static 'some_css.css' %}">
+</head>
+<body>
+    <nav>
+        <h3>HTML nav:</h3>
+        <p>
+            test redirect from the template:
+            <a href="{%url 'index'%}">Go to index from template</a>
+        </p>
+        <p>
+            test redirect from views:
+            <a href="{%url 'redirect to home'%}">Go to index from views</a>
+        </p>
+    </nav>
+    <div>
+        <h3>inclusion_tag NAV</h3>
+        {% app_nav 'index' 'redirect to home' 'about'%}
+    </div>
+    {% block page_content %}
+    {% endblock %}
+
+    {% include 'partials/footer.html' %}
+</body>
+</html>

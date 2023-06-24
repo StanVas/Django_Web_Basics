@@ -1,0 +1,81 @@
+{% extends 'base/base.html' %}
+{% load my_filters %}
+{% load my_tags %}
+
+{% block page_content %}
+    <section>
+        <p>
+            Original values: {{ custom_filter_test }}
+        </p>
+        <p>
+            Check my custom filter odd:
+            {{ custom_filter_test|odd|join:'---' }}
+        </p>
+    </section>
+    <p>CSRF_TOKEN: {{ csrf_token }}</p>
+    <h1>
+        {{ title }}: {{ value }}
+    </h1>
+        {# examples with filters #}
+    <h2>
+        Lower: {{ title|lower }}
+    </h2>
+    <h2>
+        Lower and then capfirst: {{ title|lower|capfirst }}
+    </h2>
+    <h2>
+        Add: {{ 9999999|add:1 }}
+    </h2>
+    <h2>
+        Truncate: {{ title|truncatechars:5 }}
+    </h2>
+    <h2>
+        {# views.py -> context(now) #}
+        Date from views: {{ now }}
+    </h2>
+    <h2>
+        {# views.py -> context(now) -> my_filters.py -> app_date #}
+        Date with custom filter: {{ now|app_style_date }}
+    </h2>
+    <h2>
+        Students list: {{ students|join:', ' }}
+    </h2>
+    <h2>
+        {# use if tag #}
+        {% if students %}
+            If tag: {{ students|join:', ' }}
+        {% else %}
+            No students
+        {% endif %}
+    </h2>
+    <h2>
+        {# use for tag #}
+        <ul>
+            Unordered list with for tag:
+            {% for student in students %}
+                <li>
+                    {{ student }}
+                </li>
+            {% empty %}
+                <li>No students</li>
+            {% endfor %}
+        </ul>
+    </h2>
+    <p>
+        {{ info.address }}
+    </p>
+    <p>
+        Class student:
+        {# better do it in the views #}
+        {{ new_student.get_info }}
+    </p>
+    <p>
+        Class student:
+        {# like this #}
+        {{ new_student_info }}
+    </p>
+    <p>
+        Custom tag with class student:
+        {% student_info_custom_tag new_student %}
+    </p>
+{% endblock %}
